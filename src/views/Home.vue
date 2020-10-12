@@ -1,18 +1,33 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    123
+    <van-button type="primary">主要按钮</van-button>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-
+import { request } from "../config/http.js";
 export default {
-  name: 'Home',
-  components: {
-    HelloWorld
-  }
-}
+  name: "Home",
+  created() {
+    request({
+      url: "TelecomServices/numberInquiry",
+      method: 'post',
+      data: {            
+          salesId: "00000000AFDD480EDF572DBBE053AA1410ACE80E",
+          provinceCode: "600101",
+          cityCode: "8440100",
+        }
+    }).then(res=> {
+      console.log(res)
+    })
+  },
+};
 </script>
+<style scope lang="less">
+  .home {
+    width: 375px;
+    font-size: 16px;
+    background-color: yellow;
+  }
+</style>
